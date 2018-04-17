@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1> NIMANTRAN HOME </h1>
+
+<p> Nimantran has following record counts </p>
+<ul>
+
+<li><strong> Events: </strong> {{ num_event }}</li>
+<li><strong> Venues: </strong> {{ num_venue }}</li>
+<li><strong> Members: </strong> {{ num_people }}</li>
+
+</ul>
+
+<p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+
+{% endblock %}
