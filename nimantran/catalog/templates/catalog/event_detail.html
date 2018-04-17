@@ -11,19 +11,24 @@
           <p><strong>Category:</strong> {% for cateory in event.cateory.all %} {{ cateory }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
           <p><strong>Public:</strong> {{ event.public }}</p>
       </div>
-      <div class="card"><strong>Organizer:</strong> {{ event.organizer }}</div>
+      <div class="card"><strong>Organizer:</strong> {{ event.organizer.first_name }} {{ event.organizer.last_name }}</div>
       <div class="card"><strong>Venue: </strong><a href="{% url 'venue-detail' event.venue.pk %}">{{ event.venue }}</a></div>
   </div>
 
-  <h4>Invitations</h4>
+  {% if user == event.organizer %}
+      <h4>Invitations</h4>
 
-  <div>
-      {% for invite in event.invitation_set.all %}
-      <div class="card-display">
-          <div style="text-transform: uppercase; font-weight: bold;" class="{% if invite.status == 'g' %}text-success{% elif invite.status == 'n' %}text-danger{% else %}text-warning{% endif %}">{{ invite.get_status_display }}</div>
-          <div style="color:white"><strong>{{invite.invitee}}</strong></div>
-          <div class="text-muted"><strong>Id:</strong> {{invite.id}}</div>
+      <div>
+          {% for invite in event.invitation_set.all %}
+          <div class="card-display">
+              <div style="text-transform: uppercase; font-weight: bold;" class="{% if invite.status == 'g' %}text-success{% elif invite.status == 'n' %}text-danger{% else %}text-warning{% endif %}">{{ invite.get_status_display }}</div>
+              <div style="color:white"><strong>{{ invite.invitee.first_name }} {{ invite.invitee.last_name }}</strong></div>
+              <div class="text-muted"><strong>Id:</strong> {{invite.id}}</div>
+          </div>
+          {% endfor %}
       </div>
-      {% endfor %}
-  </div>
+  {% else %}
+      
+  {% endif %}
+
 {% endblock %}
