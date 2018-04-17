@@ -57,6 +57,12 @@ class Event(models.Model):
     def get_absolute_url(self):
         return reverse('event-detail', args=[str(self.id)])
 
+    def display_category(self):
+        """
+        Creates a string for the Genre. This is required to display genre in Admin.
+        """
+        return ', '.join([ cateory.name for category in self.cateory.all()[:3] ])
+
 class Invitation(models.Model):
     """
     Model representing each invite
