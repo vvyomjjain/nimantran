@@ -9,7 +9,7 @@
   <p><strong>Organizer:</strong> {{ event.organizer }}</p>
   <p><strong>Date from:</strong> {{ event.dateFrom }}</p>
   <p><strong>Date to:</strong> {{ event.dateTo }}</p>
-  <p><strong>Venue: </strong><a href="{% url 'venue-detail' event.venue.pk %}">{{ event.venue }}</a></p>
+  <p class="card"><strong>Venue: </strong><a href="{% url 'venue-detail' event.venue.pk %}">{{ event.venue }}</a></p>
   <p><strong>Category:</strong> {% for category in event.cateory.all %}{{ event.cateory.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
   <p><strong>Public:</strong> {{ event.public }}</p>
 
