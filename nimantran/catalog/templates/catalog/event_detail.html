@@ -20,7 +20,7 @@
   <div>
       {% for invite in event.invitation_set.all %}
       <div class="card-display">
-          <div class="{% if invite.status == 'g' %}text-success{% elif invite.status == 'n' %}text-danger{% else %}text-warning{% endif %}">{{ invite.get_status_display }}</div>
+          <div style="text-transform: uppercase; font-weight: bold;" class="{% if invite.status == 'g' %}text-success{% elif invite.status == 'n' %}text-danger{% else %}text-warning{% endif %}">{{ invite.get_status_display }}</div>
           <div style="color:white"><strong>{{invite.invitee}}</strong></div>
           <div class="text-muted"><strong>Id:</strong> {{invite.id}}</div>
       </div>
