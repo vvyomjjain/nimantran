@@ -48,7 +48,7 @@ class Event(models.Model):
     dateFrom = models.DateField()
     dateTo = models.DateField()
     organizer = models.ForeignKey(User, on_delete = models.SET_NULL, null=True, blank=True)
-    cateory = models.ManyToManyField(Category, help_text = "Select a cateory for this event")
+    cateory = models.ManyToManyField(Category, help_text = "Select a category for this event")
     venue = models.ForeignKey(Venue, help_text = "Select the venue", on_delete = models.DO_NOTHING)
     public = models.BooleanField(default = True)
 
@@ -57,6 +57,12 @@ class Event(models.Model):
 
     def get_absolute_url(self):
         return reverse('event-detail', args=[str(self.id)])
+
+    def display_category(self):
+        """
+        Creates a string for the Genre. This is required to display genre in Admin.
+        """
+        return ', '.join([ cateory.name for category in self.cateory.all()[:3] ])
 
 class Invitation(models.Model):
     """

@@ -2,27 +2,28 @@
 
 {% block content %}
   <h1>{{ event.title }}</h1>
-  <br>
+  <hr>
+  <div>
+      <div style="display: inline-block; margin: 0px; padding: 0px;">
+         <p><strong>Description:</strong> {{ event.description }}</p>
+          <p><strong>Date from:</strong> {{ event.dateFrom }}</p>
+          <p><strong>Date to:</strong> {{ event.dateTo }}</p>
+          <p><strong>Category:</strong> {% for cateory in event.cateory.all %} {{ cateory }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+          <p><strong>Public:</strong> {{ event.public }}</p>
+      </div>
+      <div class="card"><strong>Organizer:</strong> {{ event.organizer }}</div>
+      <div class="card"><strong>Venue: </strong><a href="{% url 'venue-detail' event.venue.pk %}">{{ event.venue }}</a></div>
+  </div>
 
- <!-- <p><strong>Author:</strong> <a href="">{{ book.author }}</a></p> <!-- author detail link not yet defined -->
-  <p><strong>Description:</strong> {{ event.description }}</p>
-  <p><strong>Organizer:</strong> {{ event.organizer }}</p>
-  <p><strong>Date from:</strong> {{ event.dateFrom }}</p>
-  <p><strong>Date to:</strong> {{ event.dateTo }}</p>
-  <p><strong>Venue: </strong><a href="{% url 'venue-detail' event.venue.pk %}">{{ event.venue }}</a></p>
-  <p><strong>Category:</strong> {% for category in event.cateory.all %}{{ event.cateory.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-  <p><strong>Public:</strong> {{ event.public }}</p>
+  <h4>Invitations</h4>
 
-
- <!-- <div style="margin-left:20px;margin-top:20px">
-    <h4>No. of Invitation</h4>
-
-    {% for copy in book.bookinstance_set.all %}
-    <hr>
-    <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">{{ copy.get_status_display }}</p>
-    {% if copy.status != 'a' %}<p><strong>Due to be returned:</strong> {{copy.due_back}}</p>{% endif %}
-    <p><strong>Imprint:</strong> {{copy.imprint}}</p>
-    <p class="text-muted"><strong>Id:</strong> {{copy.id}}</p>
-    {% endfor %}
-  </div>-->
+  <div>
+      {% for invite in event.invitation_set.all %}
+      <div class="card-display">
+          <div class="{% if invite.status == 'g' %}text-success{% elif invite.status == 'n' %}text-danger{% else %}text-warning{% endif %}">{{ invite.get_status_display }}</div>
+          <div style="color:white"><strong>{{invite.invitee}}</strong></div>
+          <div class="text-muted"><strong>Id:</strong> {{invite.id}}</div>
+      </div>
+      {% endfor %}
+  </div>
 {% endblock %}
