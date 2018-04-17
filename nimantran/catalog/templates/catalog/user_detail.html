@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ event.title }}</h1>
+  <hr>
+  <div style="display: inline-block; margin: 0px; padding: 0px; border: 2px solid red">
+     <p><strong>Description:</strong> {{ event.description }}</p>
+      <p><strong>Date from:</strong> {{ event.dateFrom }}</p>
+      <p><strong>Date to:</strong> {{ event.dateTo }}</p>
+      <p><strong>Category:</strong> {{ event.cateory.name }}</p>
+      <p><strong>Public:</strong> {{ event.public }}</p>
+  </div>
+  <div class="card"><strong>Organizer:</strong> {{ event.organizer }}</div>
+  <div class="card"><strong>Venue: </strong><a href="{% url 'venue-detail' event.venue.pk %}">{{ event.venue }}</a></div>
+{% endblock %}

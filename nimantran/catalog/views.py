@@ -50,3 +50,6 @@ class OrganizedListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return Event.objects.filter(organizer=self.request.user)
+
+class UserDetailView(generic.DetailView):
+    model = User
