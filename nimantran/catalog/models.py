@@ -23,6 +23,7 @@ class People(models.Model):
 
     class Meta:
         ordering = ["last_name", "first_name"]
+        permissions = (("can_mark_going", "Set event as going"),)
 
     def __str__(self):
         return '{0}, {1}'.format(self.last_name, self.first_name)
