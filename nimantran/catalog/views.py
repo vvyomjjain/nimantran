@@ -67,3 +67,4 @@ def my_view(request):
         # the catalog application doesn't have such permission!
 class UserDetailView(generic.DetailView):
     model = User
+    template_name = 'catalog/user_detail.html'

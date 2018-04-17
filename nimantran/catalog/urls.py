@@ -9,4 +9,5 @@ urlpatterns = [
     path('myinvits/', views.InvitedListView.as_view(), name='my-invited'),
     path('myinvits/<int:pk>', views.InvitedDetailView.as_view(), name='invite-detail'),
     path('myorganized/', views.OrganizedListView.as_view(), name='my-organized'),
+    path('user/<int:pk>', views.UserDetailView.as_view(), name='profile'),
 ]
