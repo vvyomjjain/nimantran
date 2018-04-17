@@ -50,3 +50,18 @@ class OrganizedListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return Event.objects.filter(organizer=self.request.user)
+
+from django.contrib.auth.decorators import permission_required
+
+@permission_required('catalog.can_mark_going')
+@permission_required('catalog.can_edit')
+def my_view(request):
+
+    from django.contrib.auth.mixins import PermissionRequiredMixin
+
+    class MyView(PermissionRequiredMixin, View):
+        permission_required = 'catalog.can_mark_going'
+        # Or multiple permissions
+        permission_required = ('catalog.can_mark_going', 'catalog.can_edit')
+        # Note that 'catalog.can_edit' is just an example
+        # the catalog application doesn't have such permission!
