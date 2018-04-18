@@ -1,14 +1,21 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>{{ venue.name }}</h1>
-  <br>
+    <h1>{{ venue.name }}</h1>
+    <br>
+    <p><strong>Address:</strong> {{ venue.address }}</p>
+    <p><strong>Capacity:</strong> {{ venue.capacity }}</p>
 
+    <br>
+    <h4>Events organised here:</h4>
+    <hr>
 
-
-  <p><strong>Address:</strong> {{ venue.address }}</p>
-  <p><strong>Capacity:</strong> {{ venue.capacity }}</p>
-
-
-
+    <div class="outer">
+        {% for event in venue.event_set.all %}
+        <a class="card" href="{{ event.get_absolute_url }}">
+            <h3>{{ event.title }}</h3>
+            ({{event.dateTo}}) ({{event.venue.name}})
+        </a>
+        {% endfor %}
+    </div>
 {% endblock %}
