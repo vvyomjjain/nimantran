@@ -2,6 +2,14 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from .models import Event
+
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 # Create your views here.
 from .models import People, Venue, Event, Invitation
 from .forms import SelectResponse
@@ -29,8 +37,21 @@ from django.views import generic
 class EventListView(generic.ListView):
     model = Event
 
-class EventDetailView(generic.DetailView, request, pk):
+class EventDetailView(generic.DetailView):
     model = Event
+
+def change_status(request, pk):
+    invite = get_object_or_404(Invitation, pk=pk)
+
+    if request.method == 'POST':
+        form = SelectResponse(request.POST)
+        if form.is_valid():
+            invite.status = form.new_status
+            invite.save()
+
+            return HttpResponseRedirect(reverse('invite-detail') )
+
+    return render(request, 'catalog/myinvits/<uuid:pk>/', {'form': form, 'invite': invite})
 
 class VenueDetailView(generic.DetailView):
     model = Venue
@@ -70,10 +91,6 @@ def my_view(request):
 class UserDetailView(generic.DetailView):
     model = User
     template_name = 'catalog/user_detail.html'
-
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-from .models import Event
 
 class EventCreate(LoginRequiredMixin, CreateView):
     model = Event

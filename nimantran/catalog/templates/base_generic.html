@@ -12,9 +12,9 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link href="css/bootstrap.css" rel="stylesheet" />
     <!-- Add additional CSS in static file -->
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
     <style>
+
         .outer{
           width: 100%;
         }
@@ -182,8 +182,6 @@
         ----------------------------------------------------- */
         #content {
             width: calc(100% - 250px);
-            padding-top: 20px;
-            padding-left: 40px;
             min-height: 100vh;
             transition: all 0.3s;
             position: absolute;
@@ -299,7 +297,7 @@
 
         <!-- for content -->
         <div id="content">
-            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" style="margin-bottom: 20px; float: right; margin-right: 20px; margin-top: 4px">
+            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" style="margin: 20px; float: right;">
                 <i class="glyphicon glyphicon-align-left"></i>
                 Toggle Sidebar
             </button>
