@@ -1,17 +1,30 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1> NIMANTRAN HOME </h1>
 
-<p> Nimantran has following record counts </p>
-<ul>
+    {% if user.is_authenticated %}
+        <h1> Welcome {{user.first_name}} </h1>
+        <hr>
 
-<li><strong> Events: </strong> {{ num_event }}</li>
-<li><strong> Venues: </strong> {{ num_venue }}</li>
-<li><strong> Members: </strong> {{ num_people }}</li>
+        <h3>Here are some new Invitations</h3>
+        <hr>
 
-</ul>
+        <h3>Activity in your events</h3>
+        <hr>
+    {% else %}
+        <h1> NIMANTRAN HOME </h1>
+        <hr>
 
-<p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+        <p> Nimantran has following record counts </p>
+        <ul>
+
+            <li><strong> Events: </strong> {{ num_event }}</li>
+            <li><strong> Venues: </strong> {{ num_venue }}</li>
+            <li><strong> Members: </strong> {{ num_people }}</li>
+
+        </ul>
+
+        <p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+    {% endif %}
 
 {% endblock %}

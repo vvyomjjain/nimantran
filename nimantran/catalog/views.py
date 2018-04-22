@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 from .models import People, Venue, Event, Invitation
+from .forms import SelectResponse
 
 def index(request):
     """
@@ -28,7 +29,7 @@ from django.views import generic
 class EventListView(generic.ListView):
     model = Event
 
-class EventDetailView(generic.DetailView):
+class EventDetailView(generic.DetailView, request, pk):
     model = Event
 
 class VenueDetailView(generic.DetailView):
@@ -88,4 +89,4 @@ class EventDelete(LoginRequiredMixin, DeleteView):
 
 class InviteCreate(LoginRequiredMixin, CreateView):
     model = Invitation
-    fields = '_all_'
+    fields = '__all__'

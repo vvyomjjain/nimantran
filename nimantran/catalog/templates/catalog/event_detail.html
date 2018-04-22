@@ -20,7 +20,7 @@
 
       <div>
           {% for invite in event.invitation_set.all %}
-          <div class="card-display" onmouseover="enlarge(this)" onmouseout="normal(this)">
+          <div class="card-display">
               <div style="text-transform: uppercase; font-weight: bold;" class="{% if invite.status == 'g' %}text-success{% elif invite.status == 'n' %}text-danger{% else %}text-warning{% endif %}">{{ invite.get_status_display }}</div>
               <div style="color:white"><strong>{{ invite.invitee.first_name }} {{ invite.invitee.last_name }}</strong></div>
               <div class="text-muted"><strong>Id:</strong> {{ invite.id }}</div>
@@ -29,7 +29,7 @@
           {% endfor %}
       </div>
 
-      <center><a class="card-display" href="{% url 'invite-create' %}" style="color: white; background-color: #E74C3C">
+      <center><a class="card-display" href="#" style="color: white; background-color: #2ECC71; ">
           <strong>+ NEW INVITE</strong>
       </a></center>
   {% else %}
