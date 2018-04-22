@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Create event</h1>
+    <hr>
+    <br>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <br>
+        <hr>
+        <h5>This event is created by: {{ user }}</h5>
+        <hr>
+        <br>
+        <input type="submit" value="Submit"/>
+    </form>
+{% endblock %}

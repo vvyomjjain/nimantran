@@ -5,12 +5,10 @@
   <div class="outer">
     {% if event_list %}
       {% for event in event_list %}
-        <div class="card">
-          <a href="{% url 'event-detail' event.pk %}" style="color: black;">
-            <h3>{{event.title}}</h3>
-            ({{ event.dateFrom }})
-          </a>
-        </div>
+      <a class="card" href="{{ event.get_absolute_url }}">
+          <h3>{{ event.title }}</h3>
+          ({{event.dateFrom}})
+      </a>
       {% endfor %}
 
     {% else %}

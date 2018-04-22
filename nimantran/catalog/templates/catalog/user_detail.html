@@ -4,6 +4,9 @@
   <h1>{{ user.first_name }} {{ user.last_name }}</h1>
   <hr>
   <div>
+      {% load static %}
+      <img src="{% static "catalog/avatar.jpg" %}" class="card-display" alt="avatar" style="padding:0px; height: 200px; width: auto;"/>
+
       <div style="display: inline-block; margin: 0px; padding: 0px;">
           <p><strong>Username:</strong> {{ user.username }}</p>
           <p><strong>E-mail:</strong> {{ user.email }}</p>

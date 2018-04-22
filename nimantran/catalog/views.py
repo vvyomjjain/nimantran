@@ -43,6 +43,7 @@ class InvitedListView(LoginRequiredMixin, generic.ListView):
 
 class InvitedDetailView(LoginRequiredMixin, generic.DetailView):
     model = Invitation
+    template_name = 'catalog/invitation_detail.html'
 
 class OrganizedListView(LoginRequiredMixin, generic.ListView):
     model = Event
@@ -68,3 +69,23 @@ def my_view(request):
 class UserDetailView(generic.DetailView):
     model = User
     template_name = 'catalog/user_detail.html'
+
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from .models import Event
+
+class EventCreate(LoginRequiredMixin, CreateView):
+    model = Event
+    fields = ['title', 'description', 'dateFrom', 'dateTo', 'cateory', 'venue', 'public']
+
+class EventUpdate(LoginRequiredMixin, UpdateView):
+    model = Event
+    fields = '_all_'
+
+class EventDelete(LoginRequiredMixin, DeleteView):
+    model = Event
+    success_url = reverse_lazy('events')
+
+class InviteCreate(LoginRequiredMixin, CreateView):
+    model = Invitation
+    fields = '_all_'

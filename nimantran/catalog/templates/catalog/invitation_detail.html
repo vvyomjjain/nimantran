@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+  <h1>{{ invite.event.title }}</h1>
+  <hr>
+  <div style="display: inline-block; margin: 0px; padding: 0px;">
+      <p><strong>Description:</strong> {{ invite.event.description }}</p>
+      <p><strong>Date from:</strong> {{ invite.event.dateFrom }}</p>
+      <p><strong>Date to:</strong> {{ invite.event.dateTo }}</p>
+      <p><strong>Category:</strong> {% for cateory in invite.event.cateory.all %} {{ cateory }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+      <p><strong>Public:</strong> {{ invite.event.public }}</p>
+      <br>
+      <p><strong>Note:</strong> {{ invite.note }}</p>
+      <p><strong>ID:</strong> {{ invite.id }}</p>
+  </div>
+
+{% endblock %}
