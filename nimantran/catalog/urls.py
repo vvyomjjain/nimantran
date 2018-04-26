@@ -16,5 +16,6 @@ urlpatterns = [
     path('events/create/', views.EventCreate.as_view(), name = 'events_create'),
     path('events/<int:pk>/update/', views.EventUpdate.as_view(), name='events_update'),
     path('events/<int:pk>/delete', views.EventDelete.as_view(), name='events_delete'),
-    path('invitations/create', views.InviteCreate.as_view(), name='invite_create'),
+    path('invitations/create/', views.InviteCreate.as_view(), name='invite_create'),
+    path('invitations/<uuid:pk>/update/', views.InviteUpdate.as_view(), name='invite_update'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

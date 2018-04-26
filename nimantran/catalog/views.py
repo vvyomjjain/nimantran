@@ -46,10 +46,12 @@ def change_status(request, pk):
     if request.method == 'POST':
         form = SelectResponse(request.POST)
         if form.is_valid():
-            invite.status = form.new_status
+            invite.status = form.cleaned_data['new_status']
             invite.save()
 
             return HttpResponseRedirect(reverse('invite-detail') )
+    else:
+        form = SelectResponse()
 
     return render(request, 'catalog/myinvits/<uuid:pk>/', {'form': form, 'invite': invite})
 
@@ -94,16 +96,24 @@ class UserDetailView(generic.DetailView):
 
 class EventCreate(LoginRequiredMixin, CreateView):
     model = Event
-    fields = ['title', 'description', 'dateFrom', 'dateTo', 'cateory', 'venue', 'public']
+    fields = '__all__'
 
 class EventUpdate(LoginRequiredMixin, UpdateView):
     model = Event
-    fields = '_all_'
+    fields = '__all__'
 
 class EventDelete(LoginRequiredMixin, DeleteView):
     model = Event
     success_url = reverse_lazy('events')
 
+class InviteUpdate(LoginRequiredMixin, UpdateView):
+    model = Invitation
+    fields = ['status']
+
 class InviteCreate(LoginRequiredMixin, CreateView):
     model = Invitation
-    fields = '__all__'
+    fields = ['event', 'invitee', 'note']
+
+class InvitationCreate(LoginRequiredMixin, CreateView):
+    model = Invitation
+    fields = ['event', 'invitee', 'note']

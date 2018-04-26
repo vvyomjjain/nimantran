@@ -15,6 +15,10 @@
 
     <style>
 
+        *{
+            font-family: 'Google sans'
+        }
+
         .outer{
           width: 100%;
         }
@@ -54,6 +58,67 @@
         .card-display a:hover{
             box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
             transform: scale(1.1, 1.1);
+        }
+
+        select{
+            padding: 4px;
+            border-radius: 4px;
+            margin-left: 36px;
+        }
+
+        th, td{
+            padding: 8px;
+        }
+
+        option{
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+        select:focus{
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+        }
+
+        label{
+            padding: 4px;
+        }
+
+        input{
+            padding: 4px;
+            margin-left: 36px;
+            border-bottom: 2px solid black;
+            transition: 1s;
+            border-top: 0px;
+            border-right: 0px;
+            border-left: 0px;
+            width: 200px;
+        }
+
+        input[type=submit]{
+            border-radius: 20px;
+            border: none;
+            background-color: #641E16;
+            color: white;
+            padding: 8px;
+            font-size: 16px;
+            margin: 0px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            font-weight: bold;
+        }
+
+        input[type=submit]:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            transform: scale(1.05, 1.05);
+            background-color: #C0392B;
+        }
+
+        input:focus{
+
+        }
+
+        .helptext{
+            font-size: 12px;
+            margin-left: 36px;
         }
 
         a, a:hover, a:focus {
@@ -299,7 +364,7 @@
         <div id="content">
             <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" style="margin: 20px; float: right;">
                 <i class="glyphicon glyphicon-align-left"></i>
-                Toggle Sidebar
+                &#9776;
             </button>
             {% block content %}{% endblock %}
 

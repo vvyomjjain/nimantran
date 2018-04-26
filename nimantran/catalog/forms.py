@@ -1,4 +1,4 @@
 from django import forms
 
 class SelectResponse(forms.Form):
-    new_status = forms.CharField(help_text = "enter a value")
+    new_status = forms.CharField(label='New Status', max_length=1)

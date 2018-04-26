@@ -69,7 +69,7 @@ class Invitation(models.Model):
     Model representing each invite
     """
     id = models.UUIDField(primary_key = True, default = uuid.uuid4, help_text = "Unique ID for this invite")
-    event = models.ForeignKey(Event, help_text = "select the event for this event", on_delete = models.DO_NOTHING)
+    event = models.ForeignKey(Event, help_text = "select the event for this invitation", on_delete = models.DO_NOTHING)
     invitee = models.ForeignKey(User, on_delete = models.SET_NULL, null=True, blank=True)
     note = models.CharField(max_length = 1000, help_text = "A personalised note for the guest", null = True)
 
