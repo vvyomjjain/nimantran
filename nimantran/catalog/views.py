@@ -14,6 +14,8 @@ from django.urls import reverse
 from .models import People, Venue, Event, Invitation
 from .forms import SelectResponse
 
+from django.views import generic
+
 def index(request):
     """
     View function for homepage
@@ -32,7 +34,16 @@ def index(request):
         'index.html',
         context={'num_people':num_people, 'num_venue':num_venue, 'num_event':num_event, 'num_visits':num_visits},
     )
-from django.views import generic
+
+def about(request):
+    """
+    View function for about page
+    """
+
+    return render(
+        request,
+        'about.html',
+    )
 
 class EventListView(generic.ListView):
     model = Event

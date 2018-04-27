@@ -6,6 +6,7 @@ import uuid
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('about', views.about, name='about'),
 	path('events/', views.EventListView.as_view(), name='events'),
 	path('events/<int:pk>', views.EventDetailView.as_view(), name='event-detail'),
     path('venue/<int:pk>', views.VenueDetailView.as_view(), name='venue-detail'),

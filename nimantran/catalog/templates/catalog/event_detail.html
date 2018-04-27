@@ -1,7 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<div style="padding: 40px">
+<div style="padding: 3%">
     <h1>{{ event.title }}</h1>
     <hr>
     <div>
@@ -17,20 +17,43 @@
     </div>
 
     {% if user == event.organizer %}
+        <center>
         <h4>Invitations</h4>
+        <hr>
+        <div style="vertical-align:top;">
 
-        <div>
-            {% for invite in event.invitation_set.all %}
             <div class="card-display">
-                <div style="text-transform: uppercase; font-weight: bold;" class="{% if invite.status == 'g' %}text-success{% elif invite.status == 'n' %}text-danger{% else %}text-warning{% endif %}">{{ invite.get_status_display }}</div>
-                <div style="color:white"><strong>{{ invite.invitee.first_name }} {{ invite.invitee.last_name }}</strong></div>
-                <div class="text-muted"><strong>Id:</strong> {{ invite.id }}</div>
+                <div style="text-transform: uppercase; font-weight: bold; vertical-align:top;" class="text-success">going</div>
+                <hr style="border: 1px solid #85C1E9!important">
+                {% for invite in event.invitation_set.all %}
+                {% if invite.status == 'g' %}
+                    <div style="color:white"><strong>{{ invite.invitee.first_name }} {{ invite.invitee.last_name }}</strong></div>
+                {% endif %}
+                {% endfor %}
             </div>
-            </script>
-            {% endfor %}
+
+            <div class="card-display">
+                <div style="text-transform: uppercase; font-weight: bold; vertical-align:top;" class="text-warning">interested</div>
+                <hr style="border: 1px solid #85C1E9!important">
+                {% for invite in event.invitation_set.all %}
+                {% if invite.status == 'i' %}
+                    <div style="color:white"><strong>{{ invite.invitee.first_name }} {{ invite.invitee.last_name }}</strong></div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="card-display">
+                <div style="text-transform: uppercase; font-weight: bold; vertical-align:top;" class="text-danger">not going</div>
+                <hr style="border: 1px solid #85C1E9!important">
+                {% for invite in event.invitation_set.all %}
+                {% if invite.status == 'n' %}
+                    <div style="color:white"><strong>{{ invite.invitee.first_name }} {{ invite.invitee.last_name }}</strong></div>
+                {% endif %}
+                {% endfor %}
+            </div>
         </div>
 
-        <center><a class="card-display" href="/catalog/invitations/create/" style="color: white; background-color: #2ECC71; ">
+        <a class="card-display" href="/catalog/invitations/create/" style="color: white; background-color: #2ECC71; ">
             <strong>+ NEW INVITE</strong>
         </a></center>
     {% else %}
