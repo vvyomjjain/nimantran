@@ -10,6 +10,10 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
+
 # Create your views here.
 from .models import People, Venue, Event, Invitation
 from .forms import SelectResponse
@@ -51,21 +55,6 @@ class EventListView(generic.ListView):
 class EventDetailView(generic.DetailView):
     model = Event
 
-def change_status(request, pk):
-    invite = get_object_or_404(Invitation, pk=pk)
-
-    if request.method == 'POST':
-        form = SelectResponse(request.POST)
-        if form.is_valid():
-            invite.status = form.cleaned_data['new_status']
-            invite.save()
-
-            return HttpResponseRedirect(reverse('invite-detail') )
-    else:
-        form = SelectResponse()
-
-    return render(request, 'catalog/myinvits/<uuid:pk>/', {'form': form, 'invite': invite})
-
 class VenueDetailView(generic.DetailView):
     model = Venue
 
@@ -102,10 +91,9 @@ def my_view(request):
         # Note that 'catalog.can_edit' is just an example
         # the catalog application doesn't have such permission!
 
-
 class UserDetailView(generic.DetailView):
     model = User
-
+    
 class UserDetailView(generic.DetailView):
     model = User
     template_name = 'catalog/user_detail.html'
@@ -133,3 +121,20 @@ class InviteCreate(LoginRequiredMixin, CreateView):
 class InvitationCreate(LoginRequiredMixin, CreateView):
     model = Invitation
     fields = ['event', 'invitee', 'note']
+<<<<<<< HEAD
+=======
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form})
+>>>>>>> 7d37f472b58f8bc73650a9de4bde091711782ce4

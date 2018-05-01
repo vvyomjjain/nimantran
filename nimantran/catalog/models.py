@@ -35,6 +35,8 @@ class Venue(models.Model):
     name = models.CharField(max_length = 200)
     address = models.CharField(max_length = 500, help_text = "address of the venue")
     capacity = models.IntegerField(help_text = "Maximum capacity of the venue")
+    lat = models.DecimalField(help_text = "Latitude for the venue", null=True, blank=True, max_digits=6, decimal_places=3)
+    lng = models.DecimalField(help_text = "Longitude for the venue", null=True, blank=True, max_digits=6, decimal_places=3)
 
     def __str__(self):
         return self.name
