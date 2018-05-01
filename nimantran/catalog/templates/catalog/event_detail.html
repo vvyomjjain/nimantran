@@ -9,11 +9,11 @@
             <p><strong>Description:</strong> {{ event.description }}</p>
             <p><strong>Date from:</strong> {{ event.dateFrom }}</p>
             <p><strong>Date to:</strong> {{ event.dateTo }}</p>
-            <p><strong>Category:</strong> {% for cateory in event.cateory.all %} {{ cateory }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+            <p><strong>Category:</strong> {% for cateory in event.cateory.all %} <span style="border-radius: 20px; background-color: #17A589; color: white; padding: 8px; width: auto">{{ cateory }}</span>{% if not forloop.last %} {% endif %}{% endfor %}</p>
             <p><strong>Public:</strong> {{ event.public }}</p>
         </div>
-        <a class="card" href="{% url 'profile' event.organizer.pk %}"><strong>Organizer:</strong> {{ event.organizer.first_name }} {{ event.organizer.last_name }}</a>
-        <a class="card" href="{% url 'venue-detail' event.venue.pk %}"><strong>Venue: </strong>{{ event.venue }}</a>
+        <center><a class="card" href="{% url 'profile' event.organizer.pk %}"><strong>Organizer:</strong> {{ event.organizer.first_name }} {{ event.organizer.last_name }}</a>
+        <a class="card" href="{% url 'venue-detail' event.venue.pk %}"><strong>Venue: </strong>{{ event.venue }}</a></center>
     </div>
 
     {% if user == event.organizer %}

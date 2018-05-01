@@ -51,21 +51,6 @@ class EventListView(generic.ListView):
 class EventDetailView(generic.DetailView):
     model = Event
 
-def change_status(request, pk):
-    invite = get_object_or_404(Invitation, pk=pk)
-
-    if request.method == 'POST':
-        form = SelectResponse(request.POST)
-        if form.is_valid():
-            invite.status = form.cleaned_data['new_status']
-            invite.save()
-
-            return HttpResponseRedirect(reverse('invite-detail') )
-    else:
-        form = SelectResponse()
-
-    return render(request, 'catalog/myinvits/<uuid:pk>/', {'form': form, 'invite': invite})
-
 class VenueDetailView(generic.DetailView):
     model = Venue
 
