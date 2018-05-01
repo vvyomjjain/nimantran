@@ -10,6 +10,10 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
+
 # Create your views here.
 from .models import People, Venue, Event, Invitation
 from .forms import SelectResponse
@@ -86,11 +90,6 @@ def my_view(request):
         permission_required = ('catalog.can_mark_going', 'catalog.can_edit')
         # Note that 'catalog.can_edit' is just an example
         # the catalog application doesn't have such permission!
-<<<<<<< HEAD
-
-class UserDetailView(generic.DetailView):
-    model = User
-=======
 class UserDetailView(generic.DetailView):
     model = User
     template_name = 'catalog/user_detail.html'
@@ -118,4 +117,17 @@ class InviteCreate(LoginRequiredMixin, CreateView):
 class InvitationCreate(LoginRequiredMixin, CreateView):
     model = Invitation
     fields = ['event', 'invitee', 'note']
->>>>>>> 9cd1af3bbd75479ff90b2704fc02009a2638aa46
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form})
