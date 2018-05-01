@@ -133,4 +133,3 @@ class InviteCreate(LoginRequiredMixin, CreateView):
 class InvitationCreate(LoginRequiredMixin, CreateView):
     model = Invitation
     fields = ['event', 'invitee', 'note']
->>>>>>> 9cd1af3bbd75479ff90b2704fc02009a2638aa46

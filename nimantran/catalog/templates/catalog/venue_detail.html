@@ -24,6 +24,21 @@
             <h3>{{ event.title }}</h3>
             ({{event.dateTo}}) ({{event.venue.name}})
         </a>
+		<div id="map" style="width:100%;height:500px"></div>
+
+			<!--<script>
+			function myMap() {
+			  var myCenter = new google.maps.LatLng(({{event.venue.lat}}),({{event.venue.lng}}));
+			  var mapCanvas = document.getElementById("map");
+			  var mapOptions = {center: myCenter, zoom: 15};
+			  var map = new google.maps.Map(mapCanvas, mapOptions);
+			  var marker = new google.maps.Marker({position:myCenter});
+			  marker.setMap(map);
+			}
+			</script>
+
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqFOY1AP0p8NWr7TLCr68AIAWlFepwMj4&callback=myMap"></script>-->
+		
         {% endfor %}
     </div>
 </div>
