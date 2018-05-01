@@ -1,17 +1,55 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1> NIMANTRAN HOME </h1>
 
-<p> Nimantran has following record counts </p>
-<ul>
+        <h1 style="background: #641E16; margin: 0px; padding: 18.5px; color: white">Home</h1>
 
-<li><strong> Events: </strong> {{ num_event }}</li>
-<li><strong> Venues: </strong> {{ num_venue }}</li>
-<li><strong> Members: </strong> {{ num_people }}</li>
+        {% load static %}
+        <div style="background: url('{% static "catalog/redefine.jpg" %}'); height: 600px; background-size: cover; color: white; padding: 40px">
+            <div style="vertical-align: center">
+                <center><h2>Events Redefined</h2></center>
+            </div>
+        </div>
 
-</ul>
+        <div style="background: url('{% static "catalog/organize.jpg" %}'); height: 600px; background-size: cover; color: white; padding: 40px">
+            <div style="vertical-align: center">
+                <center><h2>Organize Events</h2></center>
+            </div>
+        </div>
 
-<p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+        <div style="background: url('{% static "catalog/wedding.jpg" %}'); height: 600px; background-size: cover; color: white; padding: 40px">
+            <div style="vertical-align: center">
+                <center><h2>Invite Guests</h2></center>
+            </div>
+        </div>
 
+        <div style="display: flex">
+            <div style="background: url('{% static "catalog/date.jpg" %}');
+              height: 400px;
+              background-size: cover;
+              color: white;
+              padding: 40px;
+              width: 50%;">
+                <div style="vertical-align: center">
+                    <center><h2>Never Miss a Date</h2></center>
+                </div>
+            </div>
+
+            <div style="background: url('{% static "catalog/find.jpg" %}');
+              height: 400px;
+              background-size: cover;
+              color: white;
+              padding: 40px;
+              width:50%;">
+                <div style="vertical-align: center">
+                    <center><h2>Easy to find Venues</h2></center>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <center><div class="card-display" style="color: white"><strong> Events: </strong><hr style="border: 1px solid #85C1E9!important"> {{ num_event }}</div>
+            <div class="card-display" style="color: white"><strong> Venues: </strong><hr style="border: 1px solid #85C1E9!important"> {{ num_venue }}</div>
+            <div class="card-display" style="color: white"><strong> Members: </strong><hr style="border: 1px solid #85C1E9!important"> {{ num_people }}</div></center>
+        </div>
 {% endblock %}

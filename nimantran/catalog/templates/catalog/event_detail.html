@@ -1,29 +1,64 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>{{ event.title }}</h1>
-  <hr>
-  <div>
-      <div style="display: inline-block; margin: 0px; padding: 0px;">
-         <p><strong>Description:</strong> {{ event.description }}</p>
-          <p><strong>Date from:</strong> {{ event.dateFrom }}</p>
-          <p><strong>Date to:</strong> {{ event.dateTo }}</p>
-          <p><strong>Category:</strong> {% for cateory in event.cateory.all %} {{ cateory }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-          <p><strong>Public:</strong> {{ event.public }}</p>
-      </div>
-      <div class="card"><strong>Organizer:</strong> {{ event.organizer }}</div>
-      <div class="card"><strong>Venue: </strong><a href="{% url 'venue-detail' event.venue.pk %}">{{ event.venue }}</a></div>
-  </div>
+<div style="padding: 3%">
+    <h1>{{ event.title }}</h1>
+    <hr>
+    <div>
+        <div style="display: inline-block; margin: 0px; padding: 0px;">
+            <p><strong>Description:</strong> {{ event.description }}</p>
+            <p><strong>Date from:</strong> {{ event.dateFrom }}</p>
+            <p><strong>Date to:</strong> {{ event.dateTo }}</p>
+            <p><strong>Category:</strong> {% for cateory in event.cateory.all %} {{ cateory }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+            <p><strong>Public:</strong> {{ event.public }}</p>
+        </div>
+        <a class="card" href="{% url 'profile' event.organizer.pk %}"><strong>Organizer:</strong> {{ event.organizer.first_name }} {{ event.organizer.last_name }}</a>
+        <a class="card" href="{% url 'venue-detail' event.venue.pk %}"><strong>Venue: </strong>{{ event.venue }}</a>
+    </div>
 
-  <h4>Invitations</h4>
+    {% if user == event.organizer %}
+        <center>
+        <h4>Invitations</h4>
+        <hr>
+        <div style="vertical-align:top;">
 
-  <div>
-      {% for invite in event.invitation_set.all %}
-      <div class="card-display">
-          <div class="{% if invite.status == 'g' %}text-success{% elif invite.status == 'n' %}text-danger{% else %}text-warning{% endif %}">{{ invite.get_status_display }}</div>
-          <div style="color:white"><strong>{{invite.invitee}}</strong></div>
-          <div class="text-muted"><strong>Id:</strong> {{invite.id}}</div>
-      </div>
-      {% endfor %}
-  </div>
+            <div class="card-display">
+                <div style="text-transform: uppercase; font-weight: bold; vertical-align:top;" class="text-success">going</div>
+                <hr style="border: 1px solid #85C1E9!important">
+                {% for invite in event.invitation_set.all %}
+                {% if invite.status == 'g' %}
+                    <div style="color:white"><strong>{{ invite.invitee.first_name }} {{ invite.invitee.last_name }}</strong></div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="card-display">
+                <div style="text-transform: uppercase; font-weight: bold; vertical-align:top;" class="text-warning">interested</div>
+                <hr style="border: 1px solid #85C1E9!important">
+                {% for invite in event.invitation_set.all %}
+                {% if invite.status == 'i' %}
+                    <div style="color:white"><strong>{{ invite.invitee.first_name }} {{ invite.invitee.last_name }}</strong></div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="card-display">
+                <div style="text-transform: uppercase; font-weight: bold; vertical-align:top;" class="text-danger">not going</div>
+                <hr style="border: 1px solid #85C1E9!important">
+                {% for invite in event.invitation_set.all %}
+                {% if invite.status == 'n' %}
+                    <div style="color:white"><strong>{{ invite.invitee.first_name }} {{ invite.invitee.last_name }}</strong></div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <a class="card-display" href="/catalog/invitations/create/" style="color: white; background-color: #2ECC71; ">
+            <strong>+ NEW INVITE</strong>
+        </a></center>
+    {% else %}
+
+    {% endif %}
+</div>
+
 {% endblock %}

@@ -1,19 +1,21 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+<div style="padding: 3%">
     <h1>Event List</h1>
+    <hr>
     <div class="outer">
     {% if event_list %}
       {% for event in event_list %}
-      <div class="card">
-        <a href="{{ event.get_absolute_url }}" style="color: black;">
-          <h3>{{ event.title }}</h3>
-          ({{event.dateTo}}) ({{event.venue.name}})
-        </a>
-      </div>
+          <a class="card" href="{{ event.get_absolute_url }}">
+              <h3>{{ event.title }}</h3>
+              ({{event.dateTo}}) ({{event.venue.name}})
+          </a>
       {% endfor %}
     {% else %}
       <p>There are no events.</p>
     {% endif %}
   </div>
+</div>
+
 {% endblock %}

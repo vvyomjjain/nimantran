@@ -1,0 +1,68 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div style="padding: 3%">
+    <center>
+            <h1>About</h1>
+            <hr>
+
+            <strong>NIMANTRAN:</strong><hr>
+            <div>
+                {% load static %}
+                <img src="{% static "catalog/icon.png" %}"
+                    class="card-display"
+                    alt="avatar"
+                    style="padding:0px; height: 200px; width: auto; background-color: white; box-shadow: 0 0px 0px 0 rgba(0,0,0,0.2);"/>
+
+                <div>
+                    Nimantran is an app to host events and to accept invitations
+                    for other events. The app let's users explore nearby events
+                    and also create new events. User can invite a number of People
+                    to the event.
+                </div>
+
+                <br><strong>GITHUB:</strong> <a target="_blank" href="https://github.com/shwetaairan/nimantran">https://github.com/shwetaairan/nimantran</a>
+            </div>
+
+            <hr><strong>CONTRIBUTORS:</strong><hr>
+
+            <div>
+                <!-- For Vyom -->
+                <div class="card-display" style="color: white">
+                    {% load static %}
+                    <img src="{% static "catalog/vyom.jpg" %}"
+                        class="card-display"
+                        alt="avatar"
+                        style="padding:0px; height: 200px; width: auto; border-radius: 50%; display: inline"/>
+
+                    Vyom Jain
+                    <hr style="border: 1px solid #85C1E9!important">
+                    <div style="display:block">
+                        <a target="_blank" href="https://github.com/vvyomjjain"><i style="font-size:24px; padding: 4px" class="fa">&#xf09b;</i></a>
+                        <a target="_blank" href="https://www.linkedin.com/in/vyom-jain-233a28139"><i style="font-size:24px; padding: 4px" class="fa">&#xf0e1;</i></a>
+                        <a target="_blank" href="https://www.facebook.com/vvyomjjain"><i style="font-size:24px; padding: 4px" class="fa">&#xf230;</i></a>
+                    </div>
+
+                </div>
+
+                <!-- For Shweta -->
+                <div class="card-display" style="color: white">
+                    <img src="{% static "catalog/shweta2.jpg" %}"
+                        class="card-display"
+                        alt="avatar"
+                        style="padding:0px; height: 200px; width: auto; border-radius: 50%"/>
+
+                    Shweta Airan
+                    <hr style="border: 1px solid #85C1E9!important">
+                    <div style="display:block">
+                        <a target="_blank" href="https://github.com/shwetaairan"><i style="font-size:24px; padding: 4px" class="fa">&#xf09b;</i></a>
+                        <a target="_blank" href="https://www.linkedin.com/in/shweta-airan-132145121/"><i style="font-size:24px; padding: 4px" class="fa">&#xf0e1;</i></a>
+                        <a target="_blank" href="https://www.facebook.com/shweta.airan.7"><i style="font-size:24px; padding: 4px" class="fa">&#xf230;</i></a>
+                    </div>
+                </div>
+            </div>
+
+    </center>
+</div>
+
+{% endblock %}

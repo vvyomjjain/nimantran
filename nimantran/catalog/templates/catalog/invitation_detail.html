@@ -1,0 +1,41 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div style="padding: 3%">
+    <h1>{{ invitation.event.title }} - by {{ invitation.event.organizer.first_name }} {{ invitation.event.organizer.last_name }}</h1>
+    <hr>
+    <div style="margin: 0px; padding: 0px;">
+        <div>
+            <center><div class="card-display" style="background-color: #148F77; color: white"><strong>DATE FROM</strong><br><hr> {{ invitation.event.dateFrom }}</div>
+            <div class="card-display" style="color: white; background-color: #148F77"><strong>DATE TO</strong><br><hr> {{ invitation.event.dateTo }}</div>
+            <div class="card-display" style="color: white; background-color: #E74C3C; width: 400px"><strong>VENUE </strong><br><hr> {{ invitation.event.venue }}</div></center>
+        </div>
+        <br>
+
+        <center><div><strong>DESCRIPTION:</strong><hr> {{ invitation.event.description }}</div></center>
+        <br>
+
+        <div>
+            <center><div style="display: inline-block; margin-right:20px; width: 200px;"><strong>CATEGORY:</strong><hr> {% for cateory in invitation.event.cateory.all %} {{ cateory }}{% if not forloop.last %}, {% endif %}{% endfor %}</div>
+            <div style="display: inline-block; width: 200px;"><strong>PUBLIC:</strong><hr> {{ invitation.event.public }}</div></center>
+        </div>
+        <br>
+
+        <center><div><strong>MESSAGE:</strong><hr> {{ invitation.note }}</div></center>
+        <br>
+
+        <div>
+            <center><div class="card-display" style="background-color: #dc3545; color: white"><strong>NOT GOING {% if invitation.status == 'n' %}&#10003;{% endif %}</strong></div>
+            <div class="card-display" style="color: white; background-color: #ffc107"><strong>INTERESTED {% if invitation.status == 'i' %}&#10003;{% endif %}</strong></div>
+            <div class="card-display" style="color: white; background-color: #28a745;"><strong>GOING {% if invitation.status == 'g' %}&#10003;{% endif %}</strong></div></center>
+        </div>
+
+        <center><a class="card-display" href="/catalog/invitations/{{ invitation.id }}/update" style="color: white; background-color: #2C3E50; border-radius: 50%; height: 100px; width: 100px; padding-top: 37px;">
+            <strong>CHANGE</strong>
+        </a></center>
+
+        <br>
+
+    </div>
+</div>
+{% endblock %}
