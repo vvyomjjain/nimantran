@@ -7,7 +7,7 @@
 	<h1 style="color: white;">Welcome to Nimantran</h1>
 	<div class="card-display" style="width: auto; background-color: #943126; padding: 8%; color: white; ">
 
-		<h1>Login</h1>
+		<h2>Login</h2>
 		<hr style="border: 1px solid #F5B041">
 		{% if form.errors %}
 		<p>Your username and password didn't match. Please try again.</p>
@@ -43,6 +43,7 @@
 		<br>
 		{# Assumes you setup the password_reset view in your URLconf #}
 		<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+		<p><a href="{% url 'signup' %}">New here?</a></p>
 
 	</div>
 	</center>

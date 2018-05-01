@@ -24,5 +24,4 @@ urlpatterns = [
 
     path('invitations/create/', views.InviteCreate.as_view(), name='invite_create'),
     path('invitations/<uuid:pk>/update/', views.InviteUpdate.as_view(), name='invite_update'),
-    url(r'^signup/$', core_views.signup, name='signup'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
