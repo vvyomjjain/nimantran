@@ -86,6 +86,11 @@ def my_view(request):
         permission_required = ('catalog.can_mark_going', 'catalog.can_edit')
         # Note that 'catalog.can_edit' is just an example
         # the catalog application doesn't have such permission!
+<<<<<<< HEAD
+
+class UserDetailView(generic.DetailView):
+    model = User
+=======
 class UserDetailView(generic.DetailView):
     model = User
     template_name = 'catalog/user_detail.html'
@@ -113,3 +118,4 @@ class InviteCreate(LoginRequiredMixin, CreateView):
 class InvitationCreate(LoginRequiredMixin, CreateView):
     model = Invitation
     fields = ['event', 'invitee', 'note']
+>>>>>>> 9cd1af3bbd75479ff90b2704fc02009a2638aa46
