@@ -121,6 +121,8 @@ class InviteCreate(LoginRequiredMixin, CreateView):
 class InvitationCreate(LoginRequiredMixin, CreateView):
     model = Invitation
     fields = ['event', 'invitee', 'note']
+<<<<<<< HEAD
+=======
 
 def signup(request):
     if request.method == 'POST':
@@ -135,3 +137,4 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
+>>>>>>> 7d37f472b58f8bc73650a9de4bde091711782ce4
