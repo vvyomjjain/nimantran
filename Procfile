@@ -1,0 +1,1 @@
+web: gunicorn nimantran.wsgi --log-file -
