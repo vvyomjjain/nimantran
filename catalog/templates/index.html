@@ -1,0 +1,55 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+        <h1 style="background: #641E16; margin: 0px; padding: 18.5px; color: white">Home</h1>
+
+        {% load static %}
+        <div style="background: url('{% static "catalog/redefine.jpg" %}'); height: 600px; background-size: cover; color: white; padding: 40px">
+            <div style="vertical-align: center">
+                <center><h2>Events Redefined</h2></center>
+            </div>
+        </div>
+
+        <div style="background: url('{% static "catalog/organize.jpg" %}'); height: 600px; background-size: cover; color: white; padding: 40px">
+            <div style="vertical-align: center">
+                <center><h2>Organize Events</h2></center>
+            </div>
+        </div>
+
+        <div style="background: url('{% static "catalog/wedding.jpg" %}'); height: 600px; background-size: cover; color: white; padding: 40px">
+            <div style="vertical-align: center">
+                <center><h2>Invite Guests</h2></center>
+            </div>
+        </div>
+
+        <div style="display: flex">
+            <div style="background: url('{% static "catalog/date.jpg" %}');
+              height: 400px;
+              background-size: cover;
+              color: white;
+              padding: 40px;
+              width: 50%;">
+                <div style="vertical-align: center">
+                    <center><h2>Never Miss a Date</h2></center>
+                </div>
+            </div>
+
+            <div style="background: url('{% static "catalog/find.jpg" %}');
+              height: 400px;
+              background-size: cover;
+              color: white;
+              padding: 40px;
+              width:50%;">
+                <div style="vertical-align: center">
+                    <center><h2>Easy to find Venues</h2></center>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <center><div class="card-display" style="color: white"><strong> EVENTS: </strong><hr style="border: 1px solid #85C1E9!important"> {{ num_event }}</div>
+            <div class="card-display" style="color: white"><strong> VENUES: </strong><hr style="border: 1px solid #85C1E9!important"> {{ num_venue }}</div>
+            <div class="card-display" style="color: white"><strong> MEMBERS: </strong><hr style="border: 1px solid #85C1E9!important"> {{ num_people }}</div></center>
+        </div>
+{% endblock %}

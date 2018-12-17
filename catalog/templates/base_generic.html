@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Nimantran</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- for icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Add additional CSS in static file -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static "catalog/style.css" %}">
+
+</head>
+<body>
+
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Bootstrap Js CDN -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Custom Scroller Js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+
+        });
+
+        $(document).ready(function () {
+
+            $("#sidebar").mCustomScrollbar({
+                 theme: "minimal"
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+
+        });
+
+        $(document).ready(function () {
+
+            $("#sidebar").mCustomScrollbar({
+                 theme: "minimal"
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                // open or close navbar
+                $('#sidebar').toggleClass('active');
+                // close dropdowns
+                $('.collapse.in').toggleClass('in');
+                // and also adjust aria-expanded attributes we use for the open/closed arrows
+                // in our CSS
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+
+        });
+    </script>
+
+    <div class="wrapper">
+
+        <!-- for sidebar -->
+        {% block sidebar %}
+            <nav id="sidebar">
+                <!-- Sidebar Header -->
+                <div class="sidebar-header">
+                    <h3><a class="navbar-brand active" href="{% url 'index' %}">Nimantran</a><h3>
+                </div>
+
+                <!-- Sidebar Links -->
+                <ul class="list-unstyled components">
+                    <li><a href="{% url 'about' %}">About</a></li>
+
+                    <li><a href="{% url 'events' %}">Events</a></li>
+
+                    {% if user.is_authenticated %}
+                        <li class="sidebar-header">User: {{ user.get_username }}</li>
+                        <li><a href="{% url 'my-invited' %}">My Invitations</a></li>
+                        <li><a href="{% url 'my-organized' %}">My Events</a></li>
+                        <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endblock %}
+
+        <!-- for content -->
+        <div id="content">
+            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" style="margin: 20px; float: right;">
+                <i class="glyphicon glyphicon-align-left"></i>
+                &#9776;
+            </button>
+            {% block content %}{% endblock %}
+
+            {% block pagination %}
+                {% if is_paginated %}
+                    <div class="pagination">
+                        <span class="page-links">
+                            {% if page_obj.has_previous %}
+                                <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                            {% endif %}
+                            <span class="page-current">
+                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                            </span>
+                            {% if page_obj.has_next %}
+                                <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                {% endif %}
+            {% endblock %}
+        </div>
+    </div>
+
+</body>
+</html>

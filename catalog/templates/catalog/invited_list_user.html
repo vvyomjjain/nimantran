@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div style="padding: 3%">
+    <h1>Invitations</h1>
+    <hr>
+
+    <div class="outer">
+      {% if invitation_list %}
+
+        {% for invite in invitation_list %}
+        <a href="{{ invite.get_absolute_url }}" class="card">
+              <h3>{{invite.event.title}}</h3> ({{ invite.event.dateFrom }})
+        </a>
+        {% endfor %}
+
+      {% else %}
+        <p>There are no current invitations.</p>
+      {% endif %}
+    </div>
+</div>
+{% endblock %}
